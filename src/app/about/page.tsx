@@ -12,8 +12,9 @@ import { pageImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About",
+  /* Same string as the header intro below: hero copy is the meta description. */
   description:
-    "Upeo Africa Technologies is a software company in Mombasa, Kenya, delivering engineering, design, and marketing under one roof for businesses across Africa since 2019.",
+    "Upeo Africa Technologies is a software company on Moi Avenue in Mombasa, Kenya, building for businesses across Africa since 2019. We have delivered 791 projects across software engineering, design, and digital marketing, and nine in ten of our clients either come back or refer someone.",
 };
 
 const pillars = [
@@ -45,7 +46,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="About Upeo Africa Technologies"
-        intro={`We are a software, design, and marketing team based on Moi Avenue in Mombasa, Kenya, building for businesses across Africa since ${company.founded}. Work with us and you get one team accountable for the whole thing.`}
+        intro="Upeo Africa Technologies is a software company on Moi Avenue in Mombasa, Kenya, building for businesses across Africa since 2019. We have delivered 791 projects across software engineering, design, and digital marketing, and nine in ten of our clients either come back or refer someone."
         image={pageImages.aboutHeader}
         imageAlt="Four colleagues talking together in a modern office reception area"
       />

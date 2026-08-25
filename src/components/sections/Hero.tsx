@@ -325,9 +325,10 @@ export function Hero() {
 
             <Animate delay={500} direction="up">
               <p className="text-white/80 text-[16px] sm:text-[17px] md:text-[18px] font-[450] leading-[1.5] max-w-[520px] mb-7 sm:mb-9">
-                Upeo Africa Technologies designs and builds custom web and mobile apps,
-                payment integrations, and the branding and marketing behind them, for
-                businesses across Africa.
+                Upeo Africa Technologies is a software company in Mombasa, Kenya. We
+                design and build custom web and mobile apps, M-Pesa and Airtel Money
+                payment integrations, branding, and digital marketing that help
+                businesses across Africa launch, rank, and grow.
               </p>
             </Animate>
 

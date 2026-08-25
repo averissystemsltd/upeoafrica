@@ -13,8 +13,9 @@ import { pageImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Services",
+  /* Same string as the header intro below: hero copy is the meta description. */
   description:
-    "Custom web and mobile apps, UI/UX and branding, digital marketing, SEO, API and payment integration, and cloud management from Upeo Africa Technologies, a software company in Mombasa, Kenya.",
+    "Upeo Africa Technologies delivers software, design, and marketing services from Mombasa, Kenya: custom web application and mobile app development, UI/UX and branding, SEO, digital marketing, M-Pesa and Airtel Money payment integration, and managed cloud hosting for businesses across Africa.",
   alternates: { canonical: "/services" },
 };
 
@@ -24,7 +25,7 @@ export default function ServicesPage() {
       <PageHeader
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Services" }]}
         title="Software, Design and Marketing Services"
-        intro="Everything you need to build, launch, and grow a digital product sits under one roof at Upeo Africa Technologies. Whichever service you come to us for, the same team stays with you from the first conversation through to support after launch."
+        intro="Upeo Africa Technologies delivers software, design, and marketing services from Mombasa, Kenya: custom web application and mobile app development, UI/UX and branding, SEO, digital marketing, M-Pesa and Airtel Money payment integration, and managed cloud hosting for businesses across Africa."
         image={pageImages.servicesHeader}
         imageAlt="Software developer at his workstation with a code editor open on the monitor beside him"
       />

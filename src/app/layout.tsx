@@ -26,8 +26,11 @@ export const metadata: Metadata = {
     default: `${company.name} · Software, Design & Marketing Agency in Mombasa`,
     template: `%s · ${company.name}`,
   },
+  /* Matches the hero paragraph in Hero.tsx word for word. The hero copy IS
+     the meta description on every page of this site: see the note on
+     `detail.lead` in src/lib/services.ts. */
   description:
-    "Upeo Africa Technologies is a Mombasa-based digital agency offering software engineering, web & mobile apps, UI/UX and branding, digital marketing, and payment integrations (M-Pesa, Airtel Money), helping businesses across Africa build, launch, and grow.",
+    "Upeo Africa Technologies is a software company in Mombasa, Kenya. We design and build custom web and mobile apps, M-Pesa and Airtel Money payment integrations, branding, and digital marketing that help businesses across Africa launch, rank, and grow.",
   keywords: [
     "software company Mombasa",
     "app development Kenya",
@@ -51,13 +54,13 @@ export const metadata: Metadata = {
     siteName: company.name,
     title: `${company.name} · Software, Design & Marketing`,
     description:
-      "A full-service digital agency in Mombasa. Software, design, and marketing for businesses across Africa.",
+      "Upeo Africa Technologies is a software company in Mombasa, Kenya. We design and build custom web and mobile apps, M-Pesa and Airtel Money payment integrations, branding, and digital marketing that help businesses across Africa launch, rank, and grow.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${company.name} · Software, Design & Marketing`,
     description:
-      "A full-service digital agency in Mombasa. Software, design, and marketing for businesses across Africa.",
+      "Upeo Africa Technologies is a software company in Mombasa, Kenya. We design and build custom web and mobile apps, M-Pesa and Airtel Money payment integrations, branding, and digital marketing that help businesses across Africa launch, rank, and grow.",
   },
   robots: { index: true, follow: true },
 };

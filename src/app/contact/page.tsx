@@ -11,8 +11,9 @@ import { images, pageImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Contact",
+  /* Same string as the header intro below: hero copy is the meta description. */
   description:
-    "Start a project with Upeo Africa Technologies. Talk to our Mombasa team spanning software, design, and marketing under one roof. We reply within one business day.",
+    "Talk to Upeo Africa Technologies, a software company in Mombasa, Kenya. Tell us about your web or mobile app, branding, SEO, digital marketing, or M-Pesa payment integration project, and our team will reply within one business day with a clear plan, timeline, and quote.",
 };
 
 const details = [
@@ -32,7 +33,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         title="Contact Upeo Africa Technologies"
-        intro="Bring us a detailed brief or just the beginnings of an idea, and we will take it from there. Tell us what you want to build and you will hear back from our Mombasa team within one business day."
+        intro="Talk to Upeo Africa Technologies, a software company in Mombasa, Kenya. Tell us about your web or mobile app, branding, SEO, digital marketing, or M-Pesa payment integration project, and our team will reply within one business day with a clear plan, timeline, and quote."
         image={pageImages.contactHeader}
         imageAlt="Client support specialist talking a caller through a question at her desk"
       />

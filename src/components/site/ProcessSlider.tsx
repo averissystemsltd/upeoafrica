@@ -141,8 +141,10 @@ export function ProcessSlider({ steps }: { steps: ProcessStep[] }) {
 
               <span className="flex items-center gap-3">
                 <span className="h-2.5 w-2.5 shrink-0 bg-brand-500" aria-hidden />
+                {/* No digit here: the ghost numeral above already carries it,
+                    and printing it twice in one panel just reads as a mistake. */}
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-                  Step {String(i + 1).padStart(2, "0")}
+                  Step
                 </span>
               </span>
 
