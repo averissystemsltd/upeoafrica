@@ -5,7 +5,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/components/ui/stagger";
 import { OpenInquiry } from "@/components/site/OpenInquiry";
 import { differentiators } from "@/lib/content";
-import { images } from "@/lib/images";
 
 export function WhyUs() {
   return (
@@ -17,8 +16,8 @@ export function WhyUs() {
             <figure className="group relative h-full overflow-hidden rounded-2xl">
               <div className="relative aspect-[4/5] w-full lg:h-full lg:aspect-auto">
                 <Image
-                  src={images.presentation}
-                  alt="The Upeo Africa Technologies team working through a project with a client"
+                  src="/pages/why-choose-us.jpg"
+                  alt="The Upeo Africa Technologies Ltd. office, branded reception wall with the team at work behind it"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]"
