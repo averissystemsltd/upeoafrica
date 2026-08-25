@@ -20,6 +20,11 @@ import {
  * the site and it drives nine generated routes on its own.
  */
 
+export type ProcessStep = {
+  title: string;
+  description: string;
+};
+
 export type Specialism = {
   title: string;
   description: string;
@@ -49,6 +54,9 @@ export type Service = {
     /** What they actually walk away with. */
     outcomes: string[];
   };
+  /** How this particular engagement runs. Curated per service, because an
+   *  SEO retainer and a payment integration do not run the same way. */
+  process: ProcessStep[];
   /** The distinct pieces of work sold under this service. */
   specialisms: Specialism[];
   faqs: ServiceFaq[];
@@ -78,6 +86,33 @@ export const services: Service[] = [
         "Source code, documentation, and handover so you are never locked in",
       ],
     },
+    process: [
+      {
+        title: "Discovery workshop",
+        description:
+          "We sit with the people who will use the system daily and map how the work actually flows, including the exceptions nobody documented.",
+      },
+      {
+        title: "Blueprint and fixed scope",
+        description:
+          "You get the screens, the data model, the timeline, and the price in writing before any code is written.",
+      },
+      {
+        title: "Build in two-week increments",
+        description:
+          "Working software you can click through every fortnight, so you steer the build rather than waiting to see it at the end.",
+      },
+      {
+        title: "User testing and handover",
+        description:
+          "Your team uses it against real work while we fix what trips them up, then we train them and hand over the repositories.",
+      },
+      {
+        title: "Support and iterate",
+        description:
+          "We host it, monitor it, and keep improving it as your process changes. Most clients keep us on for exactly that reason.",
+      },
+    ],
     specialisms: [
       {
         title: "Internal Business Systems",
@@ -138,6 +173,33 @@ export const services: Service[] = [
         "Submitted, approved, and live on both stores",
       ],
     },
+    process: [
+      {
+        title: "Scope and platform plan",
+        description:
+          "What the app must do, which devices matter, and where offline behaviour is non-negotiable. Decided before design, because it shapes everything after.",
+      },
+      {
+        title: "Design and prototype",
+        description:
+          "Clickable screens you can hand to a real user before we build, which is the cheapest possible moment to change your mind.",
+      },
+      {
+        title: "Build and device testing",
+        description:
+          "Built once for both platforms, then tested on the mid-range Android handsets your customers actually own, not just on a simulator.",
+      },
+      {
+        title: "Store submission",
+        description:
+          "We handle developer accounts, listings, screenshots, privacy declarations, and the review process that catches most first-time launches out.",
+      },
+      {
+        title: "Updates and monitoring",
+        description:
+          "Crash reporting, usage analytics, and the OS-upgrade releases that quietly break apps nobody is maintaining.",
+      },
+    ],
     specialisms: [
       {
         title: "Android & iOS Apps",
@@ -198,6 +260,33 @@ export const services: Service[] = [
         "Analytics wired in so you can see what visitors actually do",
       ],
     },
+    process: [
+      {
+        title: "Content and structure",
+        description:
+          "We agree what each page has to do and who it is for, then build the sitemap around search intent rather than your org chart.",
+      },
+      {
+        title: "Design",
+        description:
+          "Mobile-first layouts you approve before build, designed for a phone on mobile data because that is how most visitors will arrive.",
+      },
+      {
+        title: "Build and optimise",
+        description:
+          "Built for speed and structured for search from the first page, with a content system your own team can run.",
+      },
+      {
+        title: "Launch and redirects",
+        description:
+          "Every old URL mapped to its new home so a redesign protects the rankings you already have instead of resetting them.",
+      },
+      {
+        title: "Measure and improve",
+        description:
+          "Analytics wired in, then monthly changes based on what visitors actually do rather than what we assumed they would.",
+      },
+    ],
     specialisms: [
       {
         title: "Business Websites",
@@ -258,6 +347,33 @@ export const services: Service[] = [
         "Fewer support calls because the interface explains itself",
       ],
     },
+    process: [
+      {
+        title: "Research",
+        description:
+          "We talk to your users and watch them attempt real tasks, so the design solves an evidenced problem rather than an assumed one.",
+      },
+      {
+        title: "Flows and wireframes",
+        description:
+          "The structure first, in grey boxes, because arguing about layout is far cheaper than arguing about colour.",
+      },
+      {
+        title: "Visual design",
+        description:
+          "Your brand applied across every screen and every state, including the empty, loading, and error cases most designs forget.",
+      },
+      {
+        title: "Prototype and test",
+        description:
+          "Clickable prototypes tested with five to eight people from your real audience, which surfaces most serious usability problems.",
+      },
+      {
+        title: "Handover to build",
+        description:
+          "Component library, specs, and source files in a form your developers, or ours, can build from without guessing.",
+      },
+    ],
     specialisms: [
       {
         title: "UX Research & Audits",
@@ -318,6 +434,33 @@ export const services: Service[] = [
         "Templates for the documents you send out every week",
       ],
     },
+    process: [
+      {
+        title: "Brand discovery",
+        description:
+          "Who you are selling to, what you want them to believe, and what your competitors have already claimed.",
+      },
+      {
+        title: "Concept directions",
+        description:
+          "Two or three genuinely different territories to react to, not one idea and two weak versions of it.",
+      },
+      {
+        title: "Refinement",
+        description:
+          "We take the direction you choose and test it where it will really live: signage, favicon, one colour, and a bad photocopy.",
+      },
+      {
+        title: "Guidelines and assets",
+        description:
+          "Source files in every format, plus written rules so the next person to make a poster does not undo the work.",
+      },
+      {
+        title: "Rollout support",
+        description:
+          "We apply it across your site, documents, and profiles so the new identity lands everywhere at once.",
+      },
+    ],
     specialisms: [
       {
         title: "Logo & Visual Identity",
@@ -378,6 +521,33 @@ export const services: Service[] = [
         "Budget moved to what works and pulled from what does not",
       ],
     },
+    process: [
+      {
+        title: "Goals and tracking",
+        description:
+          "We agree what a lead or sale is worth before spending anything, then set up conversion tracking so the numbers can be trusted.",
+      },
+      {
+        title: "Audience and channel plan",
+        description:
+          "Where your buyers actually are and what they respond to, so budget goes to two channels properly rather than five badly.",
+      },
+      {
+        title: "Creative and campaign build",
+        description:
+          "Copy, graphics, and video made for the platform and your brand, with variants built to be tested against each other.",
+      },
+      {
+        title: "Launch and optimise",
+        description:
+          "We start deliberately small, find what converts, then move budget toward it and cut what does not.",
+      },
+      {
+        title: "Report and scale",
+        description:
+          "A plain-language monthly report: spend, results, cost per result, and what we are changing next.",
+      },
+    ],
     specialisms: [
       {
         title: "Google Ads & Search",
@@ -438,6 +608,33 @@ export const services: Service[] = [
         "Monthly reporting on rankings, traffic, and the enquiries they produced",
       ],
     },
+    process: [
+      {
+        title: "Audit and baseline",
+        description:
+          "A full technical, content, and backlink audit, plus where you rank today. Without a baseline you cannot tell progress from noise.",
+      },
+      {
+        title: "Keyword and content plan",
+        description:
+          "The terms your buyers actually search, mapped to pages, prioritised by intent and by how realistic the win is.",
+      },
+      {
+        title: "Technical fixes first",
+        description:
+          "Crawlability, speed, mobile usability, and structured data, because no amount of content rescues a site Google struggles to read.",
+      },
+      {
+        title: "Content and on-page work",
+        description:
+          "New pages and rewrites targeting one clear intent each, written for your customers first and search second.",
+      },
+      {
+        title: "Report and refine",
+        description:
+          "Monthly reporting on rankings, traffic, and the enquiries they produced, then the next month's priorities based on what moved.",
+      },
+    ],
     specialisms: [
       {
         title: "Technical SEO",
@@ -512,6 +709,33 @@ export const services: Service[] = [
         "Your existing tools connected instead of manually re-keyed",
       ],
     },
+    process: [
+      {
+        title: "Requirements and rails",
+        description:
+          "Which payment methods your customers actually use, what your accountant needs to reconcile, and where the money has to land.",
+      },
+      {
+        title: "Sandbox integration",
+        description:
+          "Built and tested against the provider sandbox first, including the failure paths: timeouts, retries, and duplicate confirmations.",
+      },
+      {
+        title: "Reconciliation design",
+        description:
+          "Every transaction recorded with its provider reference, so your finance team can match payments without a spreadsheet.",
+      },
+      {
+        title: "Go-live",
+        description:
+          "Production credentials, callback URLs, and a monitored first week, because real traffic finds edge cases sandboxes never will.",
+      },
+      {
+        title: "Monitoring and support",
+        description:
+          "Alerting on failed callbacks and settlement mismatches, so a broken payment path is caught before your customers report it.",
+      },
+    ],
     specialisms: [
       {
         title: "M-Pesa Integration",
@@ -572,6 +796,33 @@ export const services: Service[] = [
         "Deployments that are repeatable instead of nerve-racking",
       ],
     },
+    process: [
+      {
+        title: "Infrastructure audit",
+        description:
+          "What you are running, where, at what cost, and what is currently exposed. Usually the first honest picture anyone has had.",
+      },
+      {
+        title: "Migration plan",
+        description:
+          "Sized to your real traffic and scheduled around your quietest window, with a rollback path agreed before we start.",
+      },
+      {
+        title: "Provision and harden",
+        description:
+          "Access control, certificates, firewalls, and patching brought current, then automated so they stay that way.",
+      },
+      {
+        title: "Monitoring and backups",
+        description:
+          "Alerting that pages a human, and backups tested by actually restoring them rather than trusting the schedule.",
+      },
+      {
+        title: "Ongoing management",
+        description:
+          "Patching, scaling, and a one-hour response target on critical incidents, with updates while we work.",
+      },
+    ],
     specialisms: [
       {
         title: "Managed Cloud Hosting",

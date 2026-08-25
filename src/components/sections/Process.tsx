@@ -8,9 +8,10 @@ export function Process() {
   return (
     <section className="bg-surface-2 py-24 lg:py-32">
       <Container>
+        {/* No kicker: "How we work" only restates the heading below it. */}
         <SectionHeading
-          eyebrow="How we work"
           title="How a project runs, step by step"
+          intro="Every engagement follows the same five stages, so you always know what is happening now and what comes next."
         />
 
         <ol className="mt-16 grid gap-6 md:grid-cols-3 lg:grid-cols-5">

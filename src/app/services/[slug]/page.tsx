@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, CircleCheckBig } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/components/ui/stagger";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { OpenInquiry } from "@/components/site/OpenInquiry";
-import { Process } from "@/components/sections/Process";
 import { GoogleRating } from "@/components/sections/GoogleRating";
 import { CTA } from "@/components/sections/CTA";
 import { services, company } from "@/lib/content";
@@ -138,27 +137,32 @@ export default async function ServicePage({ params }: Params) {
             </div>
 
             <Reveal delay={0.1}>
-              <aside className="border border-line bg-surface-2 p-8">
+              <aside className="border border-brand-200 bg-brand-50 p-8">
                 <h2 className="font-display text-lg font-semibold text-ink-900">
                   What you get
                 </h2>
+                <span className="mt-3 block h-0.5 w-10 bg-brand-500" aria-hidden />
                 <ul className="mt-6 space-y-4">
                   {service.detail.outcomes.map((o) => (
-                    <li key={o} className="flex gap-3 text-[15px] leading-relaxed text-body">
-                      <Check className="mt-0.5 h-[18px] w-[18px] shrink-0 text-brand-500" />
+                    <li key={o} className="flex gap-3 text-[15px] leading-relaxed text-slate-ink">
+                      <CircleCheckBig
+                        className="mt-0.5 h-5 w-5 shrink-0 fill-brand-500 text-white"
+                        strokeWidth={2.5}
+                        aria-hidden
+                      />
                       {o}
                     </li>
                   ))}
                 </ul>
 
-                <h3 className="mt-8 border-t border-line pt-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                <h3 className="mt-8 border-t border-brand-200 pt-6 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
                   Included
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {service.features.map((f) => (
                     <span
                       key={f}
-                      className="border border-line bg-white px-3 py-1.5 text-xs font-medium text-slate-ink"
+                      className="border border-brand-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-ink"
                     >
                       {f}
                     </span>
@@ -220,7 +224,43 @@ export default async function ServicePage({ params }: Params) {
         </Container>
       </section>
 
-      <Process />
+      {/* How this particular engagement runs. No kicker: the heading already
+          says what the section is, and it carries the brand for search. */}
+      <section className="border-t border-line bg-white py-24 lg:py-32">
+        <Container>
+          <Reveal>
+            <h2 className="max-w-3xl font-display text-2xl font-bold leading-[1.15] text-ink-900 sm:text-3xl md:text-[2.25rem]">
+              How {company.name} delivers {service.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-body">
+              {service.detail.lead.replace(/\.$/, "")}. Here is exactly how we work
+              through it with you, start to finish.
+            </p>
+          </Reveal>
+
+          <ol className="mt-14 grid gap-px border border-ink-900/10 bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-3">
+            {service.process.map((step, i) => (
+              <Reveal key={step.title} delay={stagger(i, 3)} as="li" className="flex">
+                <div className="group flex h-full w-full flex-col bg-white p-8 transition-colors duration-300 ease-out-expo hover:bg-surface-2">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center bg-brand-500 font-display text-sm font-semibold text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-display text-[17px] font-semibold text-ink-900">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="mt-4 text-[15px] leading-relaxed text-body">
+                    {step.description}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </Container>
+      </section>
 
       {/* Questions people actually ask before signing */}
       <section className="bg-white py-24 lg:py-32">
