@@ -1,5 +1,6 @@
 import { OpenInquiry } from "@/components/site/OpenInquiry";
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import { stats, company } from "@/lib/content";
 
@@ -335,12 +336,12 @@ export function Hero() {
                 <OpenInquiry className="inline-flex cursor-pointer items-center justify-center h-[46px] sm:h-[51px] px-5 sm:px-[27px] bg-brand-500 rounded-[12px] text-white text-[14px] sm:text-[15.5px] font-[450] leading-[15.5px] transition-colors hover:bg-brand-600">
                   Start a project
                 </OpenInquiry>
-                <a
+                <Link
                   href="/services"
                   className="inline-flex items-center justify-center h-[46px] sm:h-[51px] px-5 sm:px-[27px] rounded-[12px] border border-white/70 text-white text-[14px] sm:text-[15.5px] font-[450] leading-[15.5px] transition-colors hover:bg-white/10"
                 >
                   Explore our services
-                </a>
+                </Link>
               </div>
             </Animate>
           </div>

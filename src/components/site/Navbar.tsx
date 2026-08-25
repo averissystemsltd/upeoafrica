@@ -184,7 +184,7 @@ export function Navbar() {
                 {g.slugs.map((slug) => (
                   <Link
                     key={slug}
-                    href={`/services#${slug}`}
+                    href={`/services/${slug}`}
                     className="py-1.5 text-sm text-slate-ink transition-colors duration-300 ease-out-expo hover:text-brand-600"
                   >
                     {bySlug[slug]?.title}
@@ -228,7 +228,7 @@ function ServicesMega() {
               if (!s) return null;
               return (
                 <li key={slug}>
-                  <Link href={`/services#${slug}`} className="group flex gap-3">
+                  <Link href={`/services/${slug}`} className="group flex gap-3">
                     <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center border border-line text-brand-600 transition-[color,background-color,border-color] duration-300 ease-out-expo group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white">
                       <s.icon className="h-4.5 w-4.5" />
                     </span>

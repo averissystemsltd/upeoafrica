@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -18,6 +19,7 @@ export function PageHeader({
   meta,
   image,
   imageAlt,
+  breadcrumb,
 }: {
   title: React.ReactNode;
   intro?: React.ReactNode;
@@ -25,6 +27,8 @@ export function PageHeader({
   meta?: React.ReactNode;
   image?: string;
   imageAlt?: string;
+  /** Trail for pages nested below a section. The last entry is the current page. */
+  breadcrumb?: { label: string; href?: string }[];
 }) {
   return (
     <section className="relative overflow-hidden bg-ink-950 pt-36 pb-20 text-white lg:pt-44 lg:pb-24">
@@ -62,6 +66,35 @@ export function PageHeader({
 
       <Container className="relative">
         <div className="max-w-3xl">
+          {breadcrumb && breadcrumb.length > 0 && (
+            <Reveal>
+              <nav aria-label="Breadcrumb" className="mb-5">
+                <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium uppercase tracking-[0.14em]">
+                  {breadcrumb.map((crumb, i) => (
+                    <li key={crumb.label} className="flex items-center gap-2">
+                      {i > 0 && (
+                        <span className="text-white/30" aria-hidden>
+                          /
+                        </span>
+                      )}
+                      {crumb.href ? (
+                        <Link
+                          href={crumb.href}
+                          className="text-white/55 transition-colors duration-300 ease-out-expo hover:text-brand-400"
+                        >
+                          {crumb.label}
+                        </Link>
+                      ) : (
+                        <span className="text-brand-400" aria-current="page">
+                          {crumb.label}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </Reveal>
+          )}
           <Reveal>
             <h1 className="text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-[3.25rem]">
               {title}

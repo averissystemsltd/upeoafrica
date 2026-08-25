@@ -29,7 +29,7 @@ export function Services({ limit }: { limit?: number }) {
           {list.map((s, i) => (
             <Reveal key={s.slug} delay={stagger(i, 3)} className="flex">
               <Link
-                href="/services"
+                href={`/services/${s.slug}`}
                 className="group relative flex h-full w-full flex-col border-b border-r border-ink-900/12 p-8 transition-colors duration-300 ease-out-expo hover:bg-ink-950"
               >
                 <span className="pointer-events-none absolute right-6 top-6 font-display text-5xl font-light leading-none text-ink-900/[0.06] transition-colors duration-300 ease-out-expo group-hover:text-white/15">
