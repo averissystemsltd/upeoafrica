@@ -47,7 +47,17 @@ export type Service = {
   image: string;
   imageAlt: string;
   detail: {
-    /** The situation the client is in, in their words. */
+    /**
+     * The page's hero paragraph AND its meta description — they are the same
+     * string by design, see `generateMetadata` in the service route.
+     *
+     * So it is never written for looks. Every lead must carry: the stake or
+     * problem in the client's terms, the company name, the service keywords
+     * someone would actually type into Google, the places we serve, and a
+     * concrete outcome. This is the text that represents the page in search
+     * results and in the sitemap we submit, so a vague or purely atmospheric
+     * line here is a wasted ranking opportunity.
+     */
     lead: string;
     /** How we work on it. */
     body: string[];
@@ -74,7 +84,8 @@ export const services: Service[] = [
     image: "/services/web-applications.jpg",
     imageAlt: "Developer building a custom web application on a large monitor",
     detail: {
-      lead: "You are running a growing business on spreadsheets, WhatsApp groups, and software that was never built for you.",
+      lead:
+        "Off-the-shelf software stops fitting the moment your business grows. Upeo Africa Technologies builds custom web applications in Mombasa, Kenya that automate your workflows, replace the spreadsheets holding your operations together, and scale with you, from internal business systems to customer portals and reporting dashboards.",
       body: [
         "We start by sitting with the people who will use the system every day and mapping how the work really flows, not how a process document says it should. That is usually where the expensive surprises hide, and finding them in week one costs a conversation instead of a rebuild.",
         "Then we build the platform around it: your rules, your approvals, your reports. It runs on infrastructure we manage, it is secured from the first commit, and it is built so that doubling your team does not mean starting again.",
@@ -161,7 +172,8 @@ export const services: Service[] = [
     image: "/services/mobile-apps.jpg",
     imageAlt: "Mobile app being tested on a smartphone during development",
     detail: {
-      lead: "Your customers live on their phones, and a slow or fragile app is the fastest way to lose them.",
+      lead:
+        "Your customers are on their phones, on patchy networks, paying with mobile money. Upeo Africa Technologies delivers mobile app development for businesses in Kenya and across Africa, building offline-first Android and iOS apps with M-Pesa and Airtel Money integrated, designed, launched on both stores, and maintained by one team.",
       body: [
         "We build for the conditions your users are actually in: intermittent data, older Android handsets, and mobile money as the default way to pay. Offline-first is a decision we make in week one, not a patch we bolt on after the complaints start.",
         "One team covers design, build, store submission, and the updates afterwards. We handle review policy and release notes so you are not learning App Store rules against a launch deadline.",
@@ -248,7 +260,8 @@ export const services: Service[] = [
     image: "/services/websites-portals.jpg",
     imageAlt: "Designer reviewing a responsive website layout across devices",
     detail: {
-      lead: "Most visitors decide whether to trust your business within seconds of your homepage loading, if it loads at all.",
+      lead:
+        "A slow, dated website quietly loses the customers who never call. Upeo Africa Technologies designs and builds fast, search-ready websites, e-commerce stores, and customer portals in Mombasa, Kenya, engineered to load in seconds on mobile data, rank on Google, and turn visitors into enquiries.",
       body: [
         "We build sites that are quick on a mid-range phone over mobile data, because that is how most of your visitors will actually see you. Performance is a requirement we test against on every build, not a nice-to-have we mention in the proposal.",
         "Everything is structured for search from the first page, and you get a content system your own team can run without opening a ticket with us for every price change.",
@@ -335,7 +348,8 @@ export const services: Service[] = [
     image: "/services/product-design.jpg",
     imageAlt: "Product designer sketching user interface wireframes",
     detail: {
-      lead: "A product that confuses people does not get a second chance, however good the engineering underneath it is.",
+      lead:
+        "If people cannot work out your product within a minute, they leave and rarely come back. Upeo Africa Technologies delivers UI/UX and product design for businesses in Kenya and across Africa: user research, wireframes, design systems, and clickable prototypes tested with real users before a line of code is written.",
       body: [
         "We research before we draw. Who is using this, what are they trying to finish, and where do they currently give up? Those answers shape the interface far more than any trend does.",
         "You get clickable prototypes to react to before anything is built, which is the cheapest possible moment to change your mind. Then we test with real users and fix whatever trips them up.",
@@ -422,7 +436,8 @@ export const services: Service[] = [
     image: "/services/branding-creative.jpg",
     imageAlt: "Brand identity design materials laid out on a studio desk",
     detail: {
-      lead: "You are losing deals to competitors who are not better than you, but who look more established than you do.",
+      lead:
+        "Buyers judge your business by how it looks long before they ever speak to you. Upeo Africa Technologies builds brand identities in Mombasa, Kenya, covering logo design, colour, typography, and written brand guidelines, so you look as capable as you are across every touchpoint a customer sees.",
       body: [
         "We work out what your business should stand for in the eyes of the people you want to sell to, then build an identity that carries it: logo, colour, type, and the rules that hold the whole thing together.",
         "You get guidelines and source files, so the next person who makes a poster or a pitch deck does not quietly undo the work you paid for.",
@@ -509,7 +524,8 @@ export const services: Service[] = [
     image: "/services/digital-marketing.jpg",
     imageAlt: "Marketing team reviewing campaign performance analytics",
     detail: {
-      lead: "You are spending on ads every month and cannot say with confidence which part of it is working.",
+      lead:
+        "Advertising without measurement is just spending. Upeo Africa Technologies runs digital marketing for businesses in Kenya and across Africa, covering Google Ads, Meta and paid social, email, and content, all tracked against real leads and sales so you know exactly what every shilling returned.",
       body: [
         "We agree what a result is worth to you before we spend anything, then build campaigns against that number. Reach and impressions are diagnostics along the way, not the thing we are trying to buy.",
         "You get a plain-language report each month: what we spent, what it returned, what we are changing next, and why. No dashboard you have to interpret on your own.",
@@ -596,7 +612,8 @@ export const services: Service[] = [
     image: "/services/seo-content.jpg",
     imageAlt: "Search engine optimisation performance data on screen",
     detail: {
-      lead: "Someone in your city is searching for exactly what you sell today, and a competitor is taking that call.",
+      lead:
+        "In Kenya's fast-growing digital economy, ranking on Google is no longer optional. Upeo Africa Technologies delivers results-driven SEO services that help businesses in Mombasa and across Africa attract more customers, outrank competitors, and win the searches that actually convert. Technical SEO, on-page, local, and e-commerce, all white-hat.",
       body: [
         "Ranking on Google is not optional for a business here any more, it is how you get found at all. We start with the technical foundation, because no amount of content rescues a site that search engines struggle to crawl, then target the search terms that bring buyers rather than browsers.",
         "Everything we do is white-hat and built to hold. No bought links, no keyword stuffing, nothing that wins for a quarter and then costs you a penalty. For businesses serving a specific area, local SEO usually pays back fastest.",
@@ -697,7 +714,8 @@ export const services: Service[] = [
     image: "/logos/payments/card-payments.jpg",
     imageAlt: "Contactless mobile payment being made on a card terminal",
     detail: {
-      lead: "Payments in this market have rules an offshore team learns at your expense, on your customers, in production.",
+      lead:
+        "Getting paid should not be the hardest part of your product. Upeo Africa Technologies handles M-Pesa, Airtel Money, bank, and card payment integration in Kenya, along with the APIs connecting your accounting, CRM, and inventory systems, built to reconcile cleanly and survive real transaction volume.",
       body: [
         "We have put M-Pesa, Airtel Money, bank transfer, and card payments into live products, and we know where they bite: callback retries, timeouts, duplicate confirmations, and reconciliation that has to survive an audit rather than just look right on screen.",
         "The same applies to the rest of your stack. We connect accounting, CRM, inventory, and messaging tools so the same data stops being retyped between three systems by three different people.",
@@ -784,7 +802,8 @@ export const services: Service[] = [
     image: "/services/cloud-devops.jpg",
     imageAlt: "Server infrastructure in a data centre rack",
     detail: {
-      lead: "The first time most businesses think seriously about hosting is the morning it goes down.",
+      lead:
+        "Downtime costs you sales and customer trust in the same afternoon. Upeo Africa Technologies provides managed cloud hosting and server management for businesses in Kenya and across Africa, with round-the-clock monitoring, tested backups, security hardening, and a one-hour response target on critical incidents.",
       body: [
         "We run your infrastructure properly: automated deployments, monitoring that pages a human, backups that are tested by actually restoring them, and security patches applied on a schedule rather than after an incident.",
         "Our service level agreement sets a one-hour response target on critical incidents, and we keep you informed while we work rather than going quiet until it is fixed.",

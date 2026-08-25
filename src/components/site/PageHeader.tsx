@@ -8,6 +8,10 @@ import { Reveal } from "@/components/ui/Reveal";
  * a label that restates the title in smaller type is two headings pretending to
  * be one, which is exactly what the homepage sections were cleaned up to avoid.
  *
+ * The `intro` doubles as the page's meta description, so it is sized for
+ * three or four lines of keyword-bearing copy rather than one display-size
+ * flourish. Never trim it for looks: shortening it costs search visibility.
+ *
  * `image` turns the header into a photographic hero in the same key as the
  * homepage hero: photo, a left-to-right scrim so copy always sits on ink, and a
  * bottom fade into the section that follows. Without it the header falls back
@@ -102,7 +106,7 @@ export function PageHeader({
           </Reveal>
           {intro && (
             <Reveal delay={0.06}>
-              <p className="mt-6 max-w-2xl font-display text-xl leading-[1.45] text-white/85 sm:text-[1.6rem]">
+              <p className="mt-6 max-w-3xl font-display text-lg leading-[1.55] text-white/85 sm:text-xl">
                 {intro}
               </p>
             </Reveal>

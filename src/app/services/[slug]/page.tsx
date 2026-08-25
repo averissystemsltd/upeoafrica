@@ -29,15 +29,24 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
 
+  /* The hero paragraph IS the meta description. One string, used in both
+     places, so what search results show can never drift from what the page
+     actually says. `detail.lead` is written for that job: stake, company name,
+     service keywords, places served, and a concrete outcome. */
   return {
     title: service.title,
-    description: `${service.description} ${company.name} works with businesses in Mombasa, across Kenya, and throughout Africa.`,
+    description: service.detail.lead,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
       title: `${service.title} · ${company.name}`,
-      description: service.description,
+      description: service.detail.lead,
       url: `${company.domain}/services/${service.slug}`,
       images: [{ url: service.image }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} · ${company.name}`,
+      description: service.detail.lead,
     },
   };
 }
