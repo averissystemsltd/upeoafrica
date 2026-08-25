@@ -249,6 +249,8 @@ export const techStack: { name: string; slug: string }[] = [
   { name: "PostgreSQL", slug: "postgresql" },
   { name: "MongoDB", slug: "mongodb" },
   { name: "Tailwind CSS", slug: "tailwindcss" },
+  { name: "WordPress", slug: "wordpress" },
+  { name: "Magento", slug: "magento" },
   { name: "Docker", slug: "docker" },
   { name: "Figma", slug: "figma" },
 ];

@@ -109,11 +109,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col items-center gap-4 border-t border-white/10 pt-8 text-center text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p>
             © {year} {company.legalName}. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-start">
             {legalNav.map((l) => (
               <Link
                 key={l.href}
