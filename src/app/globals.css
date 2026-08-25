@@ -1,26 +1,261 @@
 @import "tailwindcss";
 
+/*
+  Upeo Africa Technologies design tokens.
+  Brand: vivid orange on deep charcoal ink. Editorial, credible, enterprise-ready.
+*/
+@theme {
+  /* Brand orange */
+  --color-brand-50: #fff5ec;
+  --color-brand-100: #ffe6d0;
+  --color-brand-200: #ffc79b;
+  --color-brand-300: #ffa563;
+  --color-brand-400: #fb8836;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea5e0b;
+  --color-brand-700: #c2470a;
+  --color-brand-800: #9a3a10;
+  --color-brand-900: #7c3110;
+
+  /* Ink / neutrals */
+  --color-ink-950: #080b11;
+  --color-ink-900: #0b0e14;
+  --color-ink-800: #111621;
+  --color-ink-700: #1b2231;
+  --color-ink-600: #2b3444;
+
+  --color-slate-ink: #1f2733;
+  --color-body: #414b5a;
+  --color-muted: #6b7583;
+
+  --color-surface: #ffffff;
+  --color-surface-2: #f7f8fa;
+  --color-surface-3: #f0f2f5;
+  --color-line: #e6e8ee;
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0b0e14;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/*
+  Base element styles live in @layer base so Tailwind text-* / bg-* utilities
+  always win over them (an unlayered rule would override utilities and, e.g.,
+  force every heading dark even on dark backgrounds).
+*/
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--color-slate-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--color-ink-900);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-brand-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Decorative helpers */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(11, 14, 20, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/*
+  Hero background crossfade. Driven entirely by CSS so it needs no JS, no
+  hydration, and cannot be stalled by browser timer throttling in a background
+  tab. Each slide is visible ~20% of the cycle, then crossfades to the next;
+  negative delays stagger them across a single shared 24s loop.
+*/
+@keyframes hero-slide {
+  0%,  20% { opacity: 1; }
+  25%, 95% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+.hero-slide {
+  opacity: 0;
+  animation: hero-slide 24s linear infinite;
+}
+.hero-slide:first-child {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* A rotating backdrop is decoration: hold the first frame. */
+  .hero-slide { animation: none; opacity: 0; }
+  .hero-slide:first-child { opacity: 1; }
+}
+
+/*
+  Hero stat carousel. Four cards share one 28s loop: each slides in, holds for
+  about five seconds, then slides out. Figures count up via an animated
+  registered custom property, so the whole thing runs with no JavaScript and
+  cannot be stalled by background-tab timer throttling.
+
+  Every animated property also has a base value equal to its *finished* state.
+  That way a browser without @property support, or a visitor who asked for
+  reduced motion, sees the real figure rather than a zero.
+*/
+@property --stat-num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes stat-card {
+  0%, 100% { opacity: 0; transform: translateX(28px); }
+  3%, 21%  { opacity: 1; transform: translateX(0); }
+  24%      { opacity: 0; transform: translateX(-28px); }
+}
+
+@keyframes stat-count {
+  0%, 3%    { --stat-num: 0; }
+  17%, 100% { --stat-num: var(--stat-target); }
+}
+
+@keyframes stat-bar {
+  0%, 3%    { transform: scaleY(0); }
+  19%, 100% { transform: scaleY(1); }
+}
+
+@keyframes stat-pop {
+  0%, 3%    { opacity: 0; transform: scale(0.3); }
+  19%, 100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes stat-pip {
+  0%, 100% { opacity: 0.28; }
+  3%, 21%  { opacity: 1; }
+  24%      { opacity: 0.28; }
+}
+
+.stat-card { animation: stat-card 28s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.stat-bar  { transform-origin: bottom; animation: stat-bar 28s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.stat-pop  { animation: stat-pop 28s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.stat-pip  { opacity: 0.28; animation: stat-pip 28s linear infinite; }
+.stat-num {
+  --stat-num: var(--stat-target);
+  counter-reset: statnum var(--stat-num);
+  animation: stat-count 28s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.stat-num::after { content: counter(statnum); }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Hold the first card, fully drawn, with its real figure. */
+  .stat-card, .stat-num, .stat-bar, .stat-pop, .stat-pip { animation: none; }
+  .stat-card { opacity: 0; transform: none; }
+  .stat-card:first-child, .stat-pip:first-child { opacity: 1; }
+}
+
+/* Apogee hero entrance timeline (pure CSS, on load) */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-scale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up    { animation: fade-up    0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-down  { animation: fade-down  0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-left  { animation: fade-left  0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-right { animation: fade-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-scale { animation: fade-scale 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/*
+  ---------------------------------------------------------------------------
+  Body-section interaction layer (appended; the hero systems above are final).
+
+  Everything the body sections add is either a hover affordance or a scroll
+  reveal. Hover affordances are Tailwind transitions on the `ease-out-expo`
+  token, and the reduced-motion block above collapses every transition and
+  animation to 0.001ms with `!important` — so a visitor who asks for reduced
+  motion still lands on the *end* state of every hover, just without the
+  travel. Scroll reveals go through `Reveal`, which renders a plain static
+  element under reduced motion. Nothing can strand an element at zero opacity.
+  ---------------------------------------------------------------------------
+*/
+
+/* The logo marquee is decorative and unreadable while it slides; hovering it
+   holds the strip still so a name can actually be read. Under reduced motion
+   the marquee is already `animation: none`, so this rule is inert there. */
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
