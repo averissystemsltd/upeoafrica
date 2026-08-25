@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/components/ui/stagger";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ServiceCard } from "@/components/site/ServiceCard";
+import { ProcessSlider } from "@/components/site/ProcessSlider";
 import { OpenInquiry } from "@/components/site/OpenInquiry";
 import { GoogleRating } from "@/components/sections/GoogleRating";
 import { CTA } from "@/components/sections/CTA";
@@ -224,41 +225,18 @@ export default async function ServicePage({ params }: Params) {
         </Container>
       </section>
 
-      {/* How this particular engagement runs. No kicker: the heading already
-          says what the section is, and it carries the brand for search. */}
+      {/* How this particular engagement runs. Heading centred and on its own:
+          the steps below say what the section is far better than a paragraph
+          of "we do this, then we do that" ever did. */}
       <section className="border-t border-line bg-white py-24 lg:py-32">
         <Container>
           <Reveal>
-            <h2 className="max-w-3xl font-display text-2xl font-bold leading-[1.15] text-ink-900 sm:text-3xl md:text-[2.25rem]">
+            <h2 className="mx-auto max-w-3xl text-center font-display text-2xl font-bold leading-[1.15] text-ink-900 sm:text-3xl md:text-[2.25rem]">
               How {company.name} delivers {service.title}
             </h2>
           </Reveal>
-          <Reveal delay={0.05}>
-            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-body">
-              {service.detail.lead.replace(/\.$/, "")}. Here is exactly how we work
-              through it with you, start to finish.
-            </p>
-          </Reveal>
 
-          <ol className="mt-14 grid gap-px border border-ink-900/10 bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-3">
-            {service.process.map((step, i) => (
-              <Reveal key={step.title} delay={stagger(i, 3)} as="li" className="flex">
-                <div className="group flex h-full w-full flex-col bg-white p-8 transition-colors duration-300 ease-out-expo hover:bg-surface-2">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center bg-brand-500 font-display text-sm font-semibold text-white">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="font-display text-[17px] font-semibold text-ink-900">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="mt-4 text-[15px] leading-relaxed text-body">
-                    {step.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <ProcessSlider steps={service.process} />
         </Container>
       </section>
 

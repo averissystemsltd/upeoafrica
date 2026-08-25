@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Star, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -10,9 +11,19 @@ export function GoogleRating() {
         <Reveal>
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center sm:flex-row sm:justify-center sm:gap-8 sm:text-left">
             <div className="flex items-center gap-3">
-              <span className="flex text-brand-500">
+              {/* Official Google mark, then stars in Google's own review gold.
+                  Brand orange here would misrepresent a third-party rating. */}
+              <Image
+                src="/logos/google-g.svg"
+                alt="Google"
+                width={24}
+                height={24}
+                unoptimized
+                className="h-6 w-6 shrink-0"
+              />
+              <span className="flex gap-0.5" style={{ color: "#FBBC05" }}>
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-current" />
+                  <Star key={i} className="h-5 w-5 fill-current" aria-hidden />
                 ))}
               </span>
               <span className="font-display text-3xl font-bold text-ink-900">
