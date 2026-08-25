@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Plus } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -29,6 +29,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey | null>(null);
+  // Which dropdown is expanded inside the mobile menu (accordion, one at a time).
+  const [mobileMega, setMobileMega] = useState<MegaKey | null>(null);
   const pathname = usePathname();
 
   // Navigating closes both menus. This is React's documented "reset state when
@@ -40,6 +42,7 @@ export function Navbar() {
     setLastPath(pathname);
     setOpen(false);
     setMega(null);
+    setMobileMega(null);
   }
 
   const isHome = pathname === "/";
@@ -161,38 +164,65 @@ export function Navbar() {
           open ? "max-h-[80vh] border-line" : "max-h-0 border-transparent",
         )}
       >
-        <Container className="flex flex-col gap-1 py-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="rounded-none px-3 py-3 text-base font-semibold text-ink-900 transition-colors duration-300 ease-out-expo hover:bg-surface-3"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <Container className="flex flex-col py-2">
+          {navItems.map((item) => {
+            // Items with a mega panel become an accordion: the label still
+            // navigates, and a "+" beside it expands the sub-links in place.
+            if (item.mega) {
+              const expanded = mobileMega === item.mega;
+              return (
+                <div key={item.label} className="border-b border-line">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={item.href}
+                      className="flex-1 py-3.5 text-base font-semibold text-ink-900 transition-colors duration-300 ease-out-expo hover:text-brand-600"
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setMobileMega(expanded ? null : item.mega!)}
+                      aria-label={`${expanded ? "Collapse" : "Expand"} ${item.label}`}
+                      aria-expanded={expanded}
+                      className="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center text-ink-900 transition-colors duration-300 ease-out-expo hover:text-brand-600"
+                    >
+                      <Plus
+                        className={cn(
+                          "h-5 w-5 transition-transform duration-300 ease-out-expo",
+                          expanded && "rotate-45",
+                        )}
+                      />
+                    </button>
+                  </div>
 
-          <p className="mt-4 px-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-            Services
-          </p>
-          {megaServices.map((g) => (
-            <div key={g.group} className="px-3 py-1.5">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted">
-                {g.group}
-              </p>
-              <div className="mt-1 flex flex-col">
-                {g.slugs.map((slug) => (
-                  <Link
-                    key={slug}
-                    href={`/services/${slug}`}
-                    className="py-1.5 text-sm text-slate-ink transition-colors duration-300 ease-out-expo hover:text-brand-600"
+                  <div
+                    className={cn(
+                      "overflow-hidden transition-[max-height] duration-300 ease-out",
+                      expanded ? "max-h-[1200px]" : "max-h-0",
+                    )}
                   >
-                    {bySlug[slug]?.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+                    <div className="pb-4">
+                      {item.mega === "services" ? (
+                        <MobileServices />
+                      ) : (
+                        <MobileProducts />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="border-b border-line py-3.5 text-base font-semibold text-ink-900 transition-colors duration-300 ease-out-expo hover:text-brand-600"
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
           <button
             type="button"
@@ -200,7 +230,7 @@ export function Navbar() {
               setOpen(false);
               openInquiry();
             }}
-            className="group mt-3 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-brand-500 px-5 py-3 text-sm font-medium text-white transition-colors duration-300 ease-out-expo hover:bg-brand-600"
+            className="group mt-4 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-brand-500 px-5 py-3 text-sm font-medium text-white transition-colors duration-300 ease-out-expo hover:bg-brand-600"
           >
             Start a project
             <ArrowRight
@@ -211,6 +241,90 @@ export function Navbar() {
         </Container>
       </div>
     </header>
+  );
+}
+
+/** Services sub-links for the mobile accordion, grouped as on desktop. */
+function MobileServices() {
+  return (
+    <div className="pl-3">
+      {megaServices.map((g) => (
+        <div key={g.group} className="py-1.5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-600">
+            {g.group}
+          </p>
+          <div className="mt-1 flex flex-col">
+            {g.slugs.map((slug) => {
+              const s = bySlug[slug];
+              if (!s) return null;
+              const Icon = s.icon;
+              return (
+                <Link
+                  key={slug}
+                  href={`/services/${slug}`}
+                  className="flex items-center gap-2.5 py-2 text-sm text-slate-ink transition-colors duration-300 ease-out-expo hover:text-brand-600"
+                >
+                  <Icon className="h-4 w-4 shrink-0 text-brand-500" />
+                  {s.title}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+      <Link
+        href="/services"
+        className="mt-1 inline-flex items-center gap-1.5 py-2 text-sm font-semibold text-brand-600"
+      >
+        All services
+        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+      </Link>
+    </div>
+  );
+}
+
+/** Products + payments sub-links for the mobile accordion. */
+function MobileProducts() {
+  return (
+    <div className="pl-3">
+      <div className="py-1.5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-600">
+          Products
+        </p>
+        <div className="mt-1 flex flex-col">
+          {products.map((p) => {
+            const Icon = p.icon;
+            return (
+              <Link
+                key={p.title}
+                href="/#products"
+                className="flex items-center gap-2.5 py-2 text-sm text-slate-ink transition-colors duration-300 ease-out-expo hover:text-brand-600"
+              >
+                <Icon className="h-4 w-4 shrink-0 text-brand-500" />
+                {p.title}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+      <div className="py-1.5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-600">
+          Payments
+        </p>
+        <div className="mt-1 flex flex-wrap gap-x-5 gap-y-1">
+          {payments.map((pm) => (
+            <Link
+              key={pm}
+              href="/#products"
+              className="flex items-center gap-1.5 py-1 text-sm text-slate-ink transition-colors duration-300 ease-out-expo hover:text-brand-600"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 bg-brand-500" aria-hidden />
+              {pm}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -20,6 +20,8 @@ import {
   GraduationCap,
   Tractor,
   Truck,
+  Plane,
+  Banknote,
   AppWindow,
   Puzzle,
   Store,
@@ -292,11 +294,14 @@ export type Industry = { title: string; icon: LucideIcon };
 
 export const industries: Industry[] = [
   { title: "Healthcare", icon: HeartPulse },
-  { title: "Financial Services", icon: Landmark },
+  { title: "Financial Services", icon: Banknote },
+  { title: "Government", icon: Landmark },
   { title: "Retail & E-commerce", icon: ShoppingBag },
   { title: "Education", icon: GraduationCap },
+  { title: "Tours & Travel", icon: Plane },
   { title: "Agriculture", icon: Tractor },
   { title: "Logistics & Transport", icon: Truck },
+  { title: "NGOs & Nonprofits", icon: Handshake },
 ];
 
 export const faqs = [

@@ -105,7 +105,7 @@ export function Capabilities() {
                   onClick={() => setActive(i)}
                   aria-pressed={on}
                   className={cn(
-                    "group relative z-10 flex flex-1 cursor-pointer items-baseline gap-2.5 px-4 py-5 text-left transition-colors duration-300 ease-out-expo sm:gap-4 sm:px-8 sm:py-7",
+                    "group relative z-10 flex min-w-0 flex-1 cursor-pointer items-baseline gap-1.5 px-2.5 py-4 text-left transition-colors duration-300 ease-out-expo sm:gap-4 sm:px-8 sm:py-7",
                     i > 0 && "border-l border-ink-900/12",
                     // Only the inactive tabs take a hover tint: the active one
                     // sits on the sliding orange block and must stay clear.
@@ -114,16 +114,16 @@ export function Capabilities() {
                 >
                   <span
                     className={cn(
-                      "font-display text-2xl font-light tabular-nums transition-colors duration-300 ease-out-expo sm:text-3xl",
+                      "font-display text-base font-light tabular-nums transition-colors duration-300 ease-out-expo sm:text-3xl",
                       on ? "text-white/60" : "text-ink-900/25 group-hover:text-ink-900/45",
                     )}
                   >
                     0{i + 1}
                   </span>
-                  <span className="flex flex-col">
+                  <span className="flex min-w-0 flex-col">
                     <span
                       className={cn(
-                        "font-display text-base font-bold uppercase tracking-wide transition-colors duration-300 ease-out-expo sm:text-xl",
+                        "font-display text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 ease-out-expo sm:text-xl",
                         on ? "text-white" : "text-ink-900 group-hover:text-brand-600",
                       )}
                     >
