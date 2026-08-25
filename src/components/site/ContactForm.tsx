@@ -9,17 +9,42 @@ import { cn } from "@/lib/utils";
 type Fields = {
   name: string;
   email: string;
+  phone: string;
   company: string;
   service: string;
+  /** Free text shown only when the service is "Other". */
+  serviceOther: string;
+  budget: string;
   message: string;
 };
 
-const empty: Fields = { name: "", email: "", company: "", service: "", message: "" };
+const empty: Fields = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  service: "",
+  serviceOther: "",
+  budget: "",
+  message: "",
+};
+
+const OTHER = "Other";
+
+const budgets = [
+  "Not sure yet",
+  "Under KES 100k",
+  "KES 100k – 500k",
+  "KES 500k – 2M",
+  "Over KES 2M",
+];
 
 export function ContactForm() {
   const [values, setValues] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [sent, setSent] = useState(false);
+
+  const isOther = values.service === OTHER;
 
   function validate(v: Fields) {
     const e: Partial<Record<keyof Fields, string>> = {};
@@ -27,6 +52,8 @@ export function ContactForm() {
     if (!v.email.trim()) e.email = "We need an email to reply to.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email))
       e.email = "That doesn't look like a valid email.";
+    if (v.service === OTHER && !v.serviceOther.trim())
+      e.serviceOther = "Tell us briefly what you need.";
     if (!v.message.trim() || v.message.trim().length < 10)
       e.message = "A little more detail helps us help you.";
     return e;
@@ -43,11 +70,21 @@ export function ContactForm() {
     setErrors(eObj);
     if (Object.keys(eObj).length > 0) return;
 
+    const service = isOther ? `Other — ${values.serviceOther}` : values.service || "-";
     const subject = encodeURIComponent(
       `New project enquiry${values.company ? `: ${values.company}` : ""}`,
     );
     const body = encodeURIComponent(
-      `Name: ${values.name}\nEmail: ${values.email}\nCompany: ${values.company || "-"}\nService: ${values.service || "-"}\n\n${values.message}`,
+      [
+        `Name: ${values.name}`,
+        `Email: ${values.email}`,
+        `Phone: ${values.phone || "-"}`,
+        `Company: ${values.company || "-"}`,
+        `Service: ${service}`,
+        `Budget: ${values.budget || "-"}`,
+        "",
+        values.message,
+      ].join("\n"),
     );
     window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
     setSent(true);
@@ -55,8 +92,8 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-line bg-white p-10 text-center">
-        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10 text-green-600">
+      <div className="flex flex-col items-center justify-center border border-line bg-white p-10 text-center">
+        <span className="inline-flex h-14 w-14 items-center justify-center bg-brand-50 text-brand-600">
           <CheckCircle2 className="h-7 w-7" />
         </span>
         <h3 className="mt-5 text-xl font-semibold text-ink-900">Thank you!</h3>
@@ -86,10 +123,10 @@ export function ContactForm() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-muted transition-[border-color,box-shadow] duration-300 ease-out-expo hover:border-brand-200 focus:outline-none focus-visible:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-500/15";
+    "w-full border bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-muted transition-[border-color,box-shadow] duration-300 ease-out-expo hover:border-brand-200 focus:outline-none focus-visible:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-500/15";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-2xl border border-line bg-white p-6 sm:p-8">
+    <form onSubmit={onSubmit} noValidate className="border border-line bg-white p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Full name" error={errors.name} htmlFor="name" required>
           <input
@@ -113,6 +150,17 @@ export function ContactForm() {
             className={cn(inputBase, errors.email ? "border-red-400" : "border-line")}
             placeholder="you@company.com"
             aria-invalid={!!errors.email}
+          />
+        </Field>
+        <Field label="Phone / WhatsApp" htmlFor="phone">
+          <input
+            id="phone"
+            type="tel"
+            autoComplete="tel"
+            value={values.phone}
+            onChange={(e) => set("phone", e.target.value)}
+            className={cn(inputBase, "border-line")}
+            placeholder="+254 …"
           />
         </Field>
         <Field label="Company" htmlFor="company">
@@ -139,10 +187,51 @@ export function ContactForm() {
                 {s.title}
               </option>
             ))}
-            <option value="Something else">Something else</option>
+            <option value={OTHER}>Other (tell us below)</option>
+          </select>
+        </Field>
+        <Field label="Rough budget" htmlFor="budget">
+          <select
+            id="budget"
+            value={values.budget}
+            onChange={(e) => set("budget", e.target.value)}
+            className={cn(inputBase, "border-line cursor-pointer appearance-none")}
+          >
+            <option value="">Prefer not to say</option>
+            {budgets.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
           </select>
         </Field>
       </div>
+
+      {/* Revealed only when the visitor picks "Other", so the form never assumes
+          it already lists everything someone might need. */}
+      {isOther && (
+        <div className="mt-5">
+          <Field
+            label="What do you need?"
+            error={errors.serviceOther}
+            htmlFor="serviceOther"
+            required
+          >
+            <input
+              id="serviceOther"
+              type="text"
+              value={values.serviceOther}
+              onChange={(e) => set("serviceOther", e.target.value)}
+              className={cn(
+                inputBase,
+                errors.serviceOther ? "border-red-400" : "border-line",
+              )}
+              placeholder="e.g. a chatbot, an integration, technical advice…"
+              aria-invalid={!!errors.serviceOther}
+            />
+          </Field>
+        </div>
+      )}
 
       <div className="mt-5">
         <Field label="How can we help?" error={errors.message} htmlFor="message" required>

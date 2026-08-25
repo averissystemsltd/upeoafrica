@@ -1,20 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { InquiryModal } from "@/components/site/InquiryModal";
 import { company } from "@/lib/content";
 
-const inter = Inter({
+// Outfit is the single typeface for the whole site — it reads well as both
+// display and body, so both --font-display and --font-sans resolve to it.
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -75,7 +71,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={outfit.variable}>
       <body className="min-h-screen antialiased">
         <script
           type="application/ld+json"
@@ -93,8 +89,10 @@ export default function RootLayout({
               areaServed: "KE",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Moi Avenue",
+                streetAddress: "Yunis Building, Moi Avenue",
+                postOfficeBoxNumber: "88225-80100",
                 addressLocality: "Mombasa",
+                postalCode: "80100",
                 addressCountry: "KE",
               },
               aggregateRating: {

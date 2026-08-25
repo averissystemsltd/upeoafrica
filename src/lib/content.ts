@@ -34,7 +34,12 @@ export const company = {
   location: "Mombasa, Kenya",
   email: "hello@upeoafricatechnologies.co.ke",
   phone: "+254 105 374738",
-  addressLine: "Moi Avenue, Mombasa, Kenya",
+  addressLine: "Yunis Building, Moi Avenue, Mombasa",
+  poBox: "P.O. Box 88225-80100, Mombasa",
+  street: "Moi Avenue",
+  building: "Yunis Building",
+  city: "Mombasa",
+  postalCode: "80100",
   founded: 2019,
   googleRating: "5.0",
   // Replace with your exact Google Business "share" link (g.page/r/…) for the direct review flow.

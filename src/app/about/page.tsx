@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { MapPin, Target, Compass, Heart, Code2, PenTool, Megaphone } from "lucide-react";
+import {
+  MapPin,
+  Target,
+  Telescope,
+  Gem,
+  Code2,
+  PenTool,
+  Megaphone,
+  ArrowRight,
+} from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { stagger } from "@/components/ui/stagger";
 import { SectionHeading } from "@/components/ui/Section";
 import { PageHeader } from "@/components/site/PageHeader";
+import { OpenInquiry } from "@/components/site/OpenInquiry";
 import { StatsBand } from "@/components/sections/StatsBand";
 import { CTA } from "@/components/sections/CTA";
 import { company, differentiators } from "@/lib/content";
@@ -17,6 +28,8 @@ export const metadata: Metadata = {
     "Upeo Africa Technologies is a software company on Moi Avenue in Mombasa, Kenya, building for businesses across Africa since 2019. We have delivered 791 projects across software engineering, design, and digital marketing, and nine in ten of our clients either come back or refer someone.",
 };
 
+/* Mission, vision, values — the classic three, with icons that mean something
+   rather than a decorative heart. */
 const pillars = [
   {
     icon: Target,
@@ -24,14 +37,14 @@ const pillars = [
     body: "To help African businesses grow through technology and marketing that is genuinely built for them: practical, reliable, and effective.",
   },
   {
-    icon: Compass,
-    title: "How we work",
-    body: "Senior people, close collaboration, honest communication. We treat your goals as our own and sweat the details that matter to you.",
+    icon: Telescope,
+    title: "Our vision",
+    body: "An Africa where any ambitious business can reach world-class software and marketing, close to home, from a team that understands its context.",
   },
   {
-    icon: Heart,
-    title: "What we value",
-    body: "Craft over shortcuts, clarity over jargon, and long-term partnerships over one-off projects. We are here for the whole journey with you.",
+    icon: Gem,
+    title: "Our values",
+    body: "Craft over shortcuts, clarity over jargon, and long-term partnerships over one-off projects. We sweat the details that decide whether work actually lasts.",
   },
 ];
 
@@ -45,14 +58,77 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
         title="About Upeo Africa Technologies"
         intro="Upeo Africa Technologies is a software company on Moi Avenue in Mombasa, Kenya, building for businesses across Africa since 2019. We have delivered 791 projects across software engineering, design, and digital marketing, and nine in ten of our clients either come back or refer someone."
         image={pageImages.aboutHeader}
         imageAlt="Four colleagues talking together in a modern office reception area"
       />
 
-      {/* Story */}
+      {/* Founder */}
       <section className="bg-white py-24 lg:py-32">
+        <Container>
+          <div className="grid items-stretch gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
+            <Reveal className="lg:h-full">
+              <div className="relative h-full">
+                <div className="relative aspect-[4/5] w-full overflow-hidden border border-line lg:h-full lg:aspect-auto">
+                  <Image
+                    src={pageImages.founder}
+                    alt="Emanuel Soita, Founder and Chief Executive Officer of Upeo Africa Technologies"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                {/* Name plate, sitting on the image's lower edge */}
+                <div className="absolute inset-x-4 bottom-4 border border-white/15 bg-ink-950/85 p-5 backdrop-blur-sm">
+                  <p className="font-display text-lg font-bold text-white">Emanuel Soita</p>
+                  <p className="mt-1 text-sm font-medium text-brand-400">
+                    Founder &amp; Chief Executive Officer
+                  </p>
+                  <p className="text-xs text-white/60">Full-Stack Developer</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="flex flex-col justify-center">
+              <SectionHeading
+                eyebrow="Leadership"
+                intro="Meet the founder who still ships code."
+              />
+              <div className="mt-8 space-y-4 text-[15px] leading-relaxed text-body">
+                <p>
+                  Emanuel Soita founded Upeo Africa Technologies in {company.founded} on a
+                  full-stack developer&apos;s conviction: businesses across Africa deserve
+                  software built to the same standard as anywhere in the world, by a team
+                  that understands their market rather than one working from a continent away.
+                </p>
+                <p>
+                  As Chief Executive Officer he still writes code and stays close to the
+                  work that ships. That is deliberate. It keeps the company honest about
+                  what is achievable, what things really cost, and how long they take, so
+                  the promises you hear from us are ones an engineer will stand behind.
+                </p>
+                <p>
+                  Under his leadership Upeo has grown from a single developer into one
+                  accountable team spanning engineering, design, and marketing, trusted by
+                  businesses across Kenya and the wider continent.
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
+                <OpenInquiry className="group inline-flex cursor-pointer items-center gap-2 bg-ink-900 px-6 py-3.5 text-sm font-medium text-white transition-colors duration-300 ease-out-expo hover:bg-brand-600">
+                  Work with our team
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-1" />
+                </OpenInquiry>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Story */}
+      <section className="border-t border-line bg-surface-2 py-24 lg:py-32">
         <Container>
           <div className="grid items-center gap-14 lg:grid-cols-2">
             <div>
@@ -72,18 +148,15 @@ export default function AboutPage() {
                   work in the handover, because one partner is accountable for the outcome.
                 </p>
                 <p>
-                  Today, from our base in Mombasa, we are the long-term partner behind
-                  products, brands, and campaigns used every day across Africa, and we are
-                  just getting started.
+                  Today, from our base on Moi Avenue in Mombasa, we are the long-term
+                  partner behind products, brands, and campaigns used every day across
+                  Africa, and we are just getting started.
                 </p>
               </div>
 
               <div className="mt-8 grid grid-cols-3 gap-3">
                 {teams.map((t) => (
-                  <div
-                    key={t.label}
-                    className="rounded-2xl border border-line bg-surface-2 p-4"
-                  >
+                  <div key={t.label} className="border border-line bg-white p-4">
                     <t.icon className="h-5 w-5 text-brand-600" />
                     <p className="mt-3 text-sm font-semibold text-ink-900">{t.label}</p>
                     <p className="text-xs text-muted">{t.desc}</p>
@@ -93,21 +166,18 @@ export default function AboutPage() {
             </div>
 
             <Reveal delay={0.1}>
-              <div className="relative">
-                <div className="absolute -inset-4 -z-10 rounded-[2.25rem] bg-brand-500/10 blur-2xl" aria-hidden />
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line shadow-[0_30px_80px_-40px_rgba(11,14,20,0.45)]">
-                  <Image
-                    src={pageImages.aboutTeam}
-                    alt="Three members of the Upeo Africa Technologies team reviewing project plans together around a table"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover object-[50%_60%]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/50 to-transparent" />
-                  <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-ink-900 backdrop-blur">
-                    <MapPin className="h-4 w-4 text-brand-600" />
-                    {company.addressLine}
-                  </div>
+              <div className="relative aspect-[4/5] overflow-hidden border border-line">
+                <Image
+                  src={pageImages.aboutTeam}
+                  alt="Members of the Upeo Africa Technologies team reviewing project plans together around a table"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover object-[50%_60%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 to-transparent" />
+                <div className="absolute inset-x-5 bottom-5 flex items-center gap-2 bg-white/90 px-4 py-2.5 text-sm font-medium text-ink-900 backdrop-blur">
+                  <MapPin className="h-4 w-4 shrink-0 text-brand-600" />
+                  {company.addressLine}
                 </div>
               </div>
             </Reveal>
@@ -115,23 +185,23 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <StatsBand />
-
-      {/* Pillars */}
-      <section className="bg-surface-2 py-24 lg:py-32">
+      {/* Mission / Vision / Values */}
+      <section className="bg-white py-24 lg:py-32">
         <Container>
           <SectionHeading
             eyebrow="What We Stand For"
-            intro="Before we write a line of code for you, this is what you are signing up for: what we are here to do, how we will work with you, and what we will not cut corners on."
+            intro="Before we write a line of code for you, this is what you are signing up for: what we are here to do, where we are headed, and what we will not cut corners on."
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-px border border-ink-900/10 bg-ink-900/10 md:grid-cols-3">
             {pillars.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.07}>
-                <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-8">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <Reveal key={p.title} delay={stagger(i, 3)} className="flex">
+                <div className="group flex h-full w-full flex-col bg-white p-8 transition-colors duration-300 ease-out-expo hover:bg-surface-2">
+                  <span className="inline-flex h-12 w-12 items-center justify-center bg-brand-50 text-brand-600 transition-colors duration-300 ease-out-expo group-hover:bg-brand-500 group-hover:text-white">
                     <p.icon className="h-6 w-6" />
                   </span>
-                  <h3 className="mt-5 text-lg font-semibold text-ink-900">{p.title}</h3>
+                  <h3 className="mt-5 font-display text-lg font-semibold text-ink-900">
+                    {p.title}
+                  </h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-body">{p.body}</p>
                 </div>
               </Reveal>
@@ -140,7 +210,9 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Values grid */}
+      <StatsBand />
+
+      {/* Why clients choose us */}
       <section className="bg-white py-24 lg:py-32">
         <Container>
           <SectionHeading
@@ -152,7 +224,7 @@ export default function AboutPage() {
             {differentiators.map((d, i) => (
               <Reveal key={d.title} delay={(i % 3) * 0.06}>
                 <div className="group">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-surface-2 text-brand-600 transition-colors duration-300 group-hover:border-brand-200 group-hover:bg-brand-50">
+                  <span className="inline-flex h-12 w-12 items-center justify-center border border-line bg-surface-2 text-brand-600 transition-colors duration-300 ease-out-expo group-hover:border-brand-200 group-hover:bg-brand-50">
                     <d.icon className="h-6 w-6" />
                   </span>
                   <h3 className="mt-5 text-lg font-semibold text-ink-900">{d.title}</h3>

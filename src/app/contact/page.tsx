@@ -49,7 +49,7 @@ export default function ContactPage() {
             {/* Left: friendly face + details */}
             <div>
               <Reveal>
-                <div className="relative overflow-hidden rounded-3xl border border-line shadow-[0_30px_80px_-45px_rgba(11,14,20,0.45)]">
+                <div className="relative overflow-hidden border border-line shadow-[0_30px_80px_-45px_rgba(11,14,20,0.45)]">
                   <div className="relative aspect-[5/4] w-full">
                     <Image
                       src={images.support}
@@ -61,7 +61,7 @@ export default function ContactPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-ink-950/75 via-ink-950/10 to-transparent" />
                   </div>
                   <div className="absolute inset-x-5 bottom-5">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-3 py-1 text-xs font-semibold text-white">
+                    <span className="inline-flex items-center gap-2 bg-brand-500 px-3 py-1 text-xs font-semibold text-white">
                       <span className="h-1.5 w-1.5 rounded-full bg-white" /> We&apos;re here to
                       help
                     </span>
@@ -78,8 +78,8 @@ export default function ContactPage() {
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {details.map((d, i) => (
                   <Reveal key={d.label} delay={i * 0.05}>
-                    <div className="flex items-center gap-3 rounded-2xl border border-line bg-white p-4">
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <div className="flex items-center gap-3 border border-line bg-white p-4">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center bg-brand-50 text-brand-600">
                         <d.icon className="h-5 w-5" />
                       </span>
                       <div className="min-w-0">
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   <details className="group py-5">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-ink-900 [&::-webkit-details-marker]:hidden">
                       {f.q}
-                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-all duration-200 group-open:rotate-45 group-open:border-brand-300 group-open:text-brand-600">
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center border border-line text-muted transition-all duration-200 group-open:rotate-45 group-open:border-brand-300 group-open:text-brand-600">
                         +
                       </span>
                     </summary>
