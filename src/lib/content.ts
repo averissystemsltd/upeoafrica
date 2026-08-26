@@ -165,39 +165,39 @@ export type Differentiator = { title: string; description: string; icon: LucideI
 
 export const differentiators: Differentiator[] = [
   {
-    title: "End-to-End Services",
+    title: "End-to-End Synergy",
     description:
-      "Strategy, design, engineering, and marketing sit on one team under one contract. There is no gap between your developer, your designer, and your agency, because there is only one of us to call.",
+      "Stop playing referee between a design team, an offshore dev shop, and a marketing agency. We bring engineering, UI/UX, and growth strategy into one room under one contract. Every product we ship is designed to scale and built to sell, with absolute accountability from day one.",
     icon: Handshake,
   },
   {
-    title: "Local Payment Expertise",
+    title: "African Payment Mastery",
     description:
-      "We have shipped M-Pesa, Airtel Money, bank transfer, and card integrations into live products. Payment rails across Africa carry rules an offshore team learns at your expense.",
+      "Navigating pan-African checkout rails isn't something an offshore team should learn on your dime. From M-Pesa and Airtel Money to regional card switches and bank transfers, we engineer seamless, battle-tested payment experiences that keep your conversion rates high and failure rates low.",
     icon: CreditCard,
   },
   {
-    title: "A Proven Track Record",
+    title: "700+ Ships & Proven Retention",
     description:
-      "791 projects delivered since 2019, and nine in ten come from repeat clients or referrals. The people who have seen our work closest are the ones who keep hiring us.",
+      "We don't measure success in launched code; we measure it in long-term momentum. With over 791 projects delivered since 2019, 90% of our business comes from clients who return or send us their network. The people who know our work best are the ones who keep trusting us.",
     icon: Award,
   },
   {
-    title: "Secure by Design",
+    title: "Architectural & Data Security",
     description:
-      "Encryption, backups, access control, and monitoring are scoped into the build from day one. Security is not a line item we sell you after something has already gone wrong.",
+      "Security isn't a patch you buy after a breach--it's built into the foundation. We bake enterprise-grade encryption, strict access control, automated backups, and real-time monitoring directly into your system's architecture before a single line of client data touches it.",
     icon: ShieldCheck,
   },
   {
-    title: "Full Code Ownership",
+    title: "100% IP & Code Ownership",
     description:
-      "On final payment we assign you the intellectual property in everything built for you, in writing. Your code, your repositories, your accounts. We keep clients because the work is good, not because leaving is hard.",
+      "Your platform is your asset, period. Once the project is delivered, full intellectual property rights, repositories, and cloud access belong entirely to you in writing. We keep our client partnerships thriving through exceptional execution, never by holding codebase keys hostage.",
     icon: KeyRound,
   },
   {
-    title: "SLA-Backed Support",
+    title: "SLA-Backed Reliability",
     description:
-      "Our service level agreement sets a one-hour response target on critical incidents, not a vague promise to get back to you. Hosting, monitoring, and maintenance carry on long after launch.",
+      "Launch day is just the beginning. Our Service Level Agreements commit us to target response times under one hour for critical operational issues. We keep your systems monitored, updated, and performing reliably long after your go-live party ends.",
     icon: LifeBuoy,
   },
 ];

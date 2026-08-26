@@ -65,68 +65,6 @@ export default function AboutPage() {
         imageAlt="Four colleagues talking together in a modern office reception area"
       />
 
-      {/* Founder */}
-      <section className="bg-white py-24 lg:py-32">
-        <Container>
-          <div className="grid items-stretch gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
-            <Reveal className="lg:h-full">
-              <div className="relative h-full">
-                <div className="relative aspect-[4/5] w-full overflow-hidden border border-line lg:h-full lg:aspect-auto">
-                  <Image
-                    src={pageImages.founder}
-                    alt="Emanuel Soita, Founder and Chief Executive Officer of Upeo Africa Technologies"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-                {/* Name plate, sitting on the image's lower edge */}
-                <div className="absolute inset-x-4 bottom-4 border border-white/15 bg-ink-950/85 p-5 backdrop-blur-sm">
-                  <p className="font-display text-lg font-bold text-white">Emanuel Soita</p>
-                  <p className="mt-1 text-sm font-medium text-brand-400">
-                    Founder &amp; Chief Executive Officer
-                  </p>
-                  <p className="text-xs text-white/60">Full-Stack Developer</p>
-                </div>
-              </div>
-            </Reveal>
-
-            <div className="flex flex-col justify-center">
-              <SectionHeading
-                eyebrow="Leadership"
-                intro="Meet the founder who still ships code."
-              />
-              <div className="mt-8 space-y-4 text-[15px] leading-relaxed text-body">
-                <p>
-                  Emanuel Soita founded Upeo Africa Technologies in {company.founded} on a
-                  full-stack developer&apos;s conviction: businesses across Africa deserve
-                  software built to the same standard as anywhere in the world, by a team
-                  that understands their market rather than one working from a continent away.
-                </p>
-                <p>
-                  As Chief Executive Officer he still writes code and stays close to the
-                  work that ships. That is deliberate. It keeps the company honest about
-                  what is achievable, what things really cost, and how long they take, so
-                  the promises you hear from us are ones an engineer will stand behind.
-                </p>
-                <p>
-                  Under his leadership Upeo has grown from a single developer into one
-                  accountable team spanning engineering, design, and marketing, trusted by
-                  businesses across Kenya and the wider continent.
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
-                <OpenInquiry className="group inline-flex cursor-pointer items-center gap-2 bg-ink-900 px-6 py-3.5 text-sm font-medium text-white transition-colors duration-300 ease-out-expo hover:bg-brand-600">
-                  Work with our team
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-1" />
-                </OpenInquiry>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Story */}
       <section className="border-t border-line bg-surface-2 py-24 lg:py-32">
         <Container>
@@ -206,6 +144,68 @@ export default function AboutPage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Founder */}
+      <section className="bg-white py-24 lg:py-32">
+        <Container>
+          <div className="grid items-stretch gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
+            <Reveal className="lg:h-full">
+              <div className="relative h-full">
+                <div className="relative aspect-[4/5] w-full overflow-hidden border border-line lg:h-full lg:aspect-auto">
+                  <Image
+                    src={pageImages.founder}
+                    alt="Emanuel Soita, Founder and Chief Executive Officer of Upeo Africa Technologies"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                {/* Name plate, sitting on the image's lower edge */}
+                <div className="absolute inset-x-4 bottom-4 border border-white/15 bg-ink-950/85 p-5 backdrop-blur-sm">
+                  <p className="font-display text-lg font-bold text-white">Emanuel Soita</p>
+                  <p className="mt-1 text-sm font-medium text-brand-400">
+                    Founder &amp; Chief Executive Officer
+                  </p>
+                  <p className="text-xs text-white/60">Full-Stack Developer</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="flex flex-col justify-center">
+              <SectionHeading
+                eyebrow="Leadership"
+                intro="Uniting African Talent to Build for Africa"
+              />
+              <div className="mt-8 space-y-4 text-[15px] leading-relaxed text-body">
+                <p>
+                  Upeo Africa Technologies was founded in 2019 by Emanuel Soita with a
+                  clear vision: to make the African continent feel like one connected
+                  village where we engineer and scale our own solutions.
+                </p>
+                <p>
+                  We bring together founders, builders, and creators from across Africa to
+                  form a formidable, unified team. As Chief Executive Officer, Emanuel
+                  remains a full-stack developer who still ships code alongside the team,
+                  ensuring that our high-level vision is grounded in technical rigor, honest
+                  timelines, and reliable execution.
+                </p>
+                <p>
+                  By combining regional expertise in engineering, design, and growth
+                  marketing under one banner, we empower African businesses to solve local
+                  challenges with world-class software.
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
+                <OpenInquiry className="group inline-flex cursor-pointer items-center gap-2 bg-ink-900 px-6 py-3.5 text-sm font-medium text-white transition-colors duration-300 ease-out-expo hover:bg-brand-600">
+                  Work with our team
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-1" />
+                </OpenInquiry>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
