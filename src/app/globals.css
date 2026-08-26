@@ -116,6 +116,18 @@
   animation: marquee 40s linear infinite;
 }
 
+@keyframes whatsapp-pulse {
+  0%, 60%, 100% { opacity: 0; transform: scale(1); }
+  10% { opacity: 0.28; }
+  35% { opacity: 0; transform: scale(1.55); }
+}
+.whatsapp-pulse {
+  animation: whatsapp-pulse 4.5s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-pulse { animation: none; }
+}
+
 /*
   Hero background crossfade. Driven entirely by CSS so it needs no JS, no
   hydration, and cannot be stalled by browser timer throttling in a background

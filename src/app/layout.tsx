@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { InquiryModal } from "@/components/site/InquiryModal";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { company } from "@/lib/content";
 
 // Outfit is the single typeface for the whole site — it reads well as both
@@ -117,6 +118,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <InquiryModal />
+        <WhatsAppButton />
       </body>
     </html>
   );

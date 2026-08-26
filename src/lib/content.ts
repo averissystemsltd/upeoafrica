@@ -35,7 +35,7 @@ export const company = {
   tagline: "Software, design and marketing, built for African businesses",
   location: "Mombasa, Kenya",
   email: "hello@upeoafricatechnologies.co.ke",
-  phone: "+254 105 374738",
+  phone: "+254 716 972 103",
   addressLine: "Yunis Building, Moi Avenue, Mombasa",
   poBox: "P.O. Box 88225-80100, Mombasa",
   street: "Moi Avenue",
