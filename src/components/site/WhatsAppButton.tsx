@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const whatsappNumber = "254716972103";
 
@@ -18,7 +18,7 @@ export function WhatsAppButton() {
           </span>
           <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.8)] transition-transform duration-300 ease-out-expo group-hover:scale-105">
             <span className="absolute inset-0 rounded-full bg-[#25D366] whatsapp-pulse" aria-hidden />
-            <MessageCircle className="relative h-7 w-7 fill-current" aria-hidden />
+            <FaWhatsapp className="relative h-7 w-7" aria-hidden />
           </span>
         </a>
       </div>
