@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: company.name }],
   creator: company.name,
+  verification: {
+    google: "WvISEi4b4smIm2spDJfIUWGCecyCqRq-WS5bdXAyj_M",
+  },
   openGraph: {
     type: "website",
     locale: "en_KE",

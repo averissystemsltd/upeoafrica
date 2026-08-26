@@ -68,7 +68,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
         overHero
-          ? "border-b border-transparent bg-transparent"
+          ? "bg-transparent"
           : "border-b border-line bg-white/90 backdrop-blur-xl",
       )}
     >
@@ -160,8 +160,10 @@ export function Navbar() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-y-auto border-t bg-white transition-[max-height] duration-300 ease-out lg:hidden",
-          open ? "max-h-[80vh] border-line" : "max-h-0 border-transparent",
+          "overflow-y-auto transition-[max-height] duration-300 ease-out lg:hidden",
+          open
+            ? "max-h-[80vh] border-t border-line bg-white"
+            : "max-h-0 border-t-0 border-transparent bg-transparent",
         )}
       >
         <Container className="flex flex-col py-2">
